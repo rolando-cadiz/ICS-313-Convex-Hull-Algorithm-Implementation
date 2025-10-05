@@ -43,5 +43,6 @@ Determines the orientation (left, right, or collinear) of three points:<br>
 - equal to 0 -> collinear
 
 ## distanceSq(Point a, Point b)
-In the case of collinear points, we choose the shortest distance from p0 to the collinear points. We forgo finding the square root of the distances because we don't explicitly care about the exact distance, just the relative distance (i.e, comparing 5 & 3 is the same as comparing 25 & 9)
+In the case of collinear points, we choose the shortest distance from p0 to the collinear points. We forgo finding the square root of the distances because we don't explicitly care about the exact distance, just the relative distance (i.e, comparing 5 & 3 is the same as comparing 25 & 9).
+
         distanceSq(a, b) = (a.x - b.x)^2 + (a.y - b.y)^2

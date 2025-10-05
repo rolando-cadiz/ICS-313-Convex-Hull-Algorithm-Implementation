@@ -13,8 +13,27 @@ The algorithm works by:
 - Handling collinear points with a distance-based tiebreaker.
 - Constructing the hull in O(n log n) time.
 
-# Function Methods
-## CrossProduct(Point a, Point b, Point c)
+## Point Class:
+Represents a 2D point and implements Comparable<Point> for sorting by y (then x):
+        class Point implements Comparable<Point> {
+    double x, y;
+    Point(double x, double y) { this.x = x; this.y = y; }
+
+    public int compareTo(Point p) {
+        if (this.y == p.y) return Double.compare(this.x, p.x);
+        return Double.compare(this.y, p.y);
+    }
+}
+
+## ConvexHullAlgorithm Class:
+Implements the Graham Scan algorithm:
+
+        grahamScan(List<Point> P) → returns a list of points on the hull in counterclockwise order.
+        
+        main() → sample test case to demonstrate usage.
+
+# Function Methods:
+## crossProduct(Point a, Point b, Point c)
 Determines the orientation (left, right, or collinear) of three points:<br>
 
     crossProduct(a, b, c) = (b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x)
@@ -22,3 +41,7 @@ Determines the orientation (left, right, or collinear) of three points:<br>
 - greater than 0 -> left turn
 - less than 0 -> right turn
 - equal to 0 -> collinear
+
+## distanceSq(Point a, Point b)
+In the case of collinear points, we choose the shortest distance from p0 to the collinear points. We forgo finding the square root of the distances because we don't explicitly care about the exact distance, just the relative distance (i.e, comparing 5 & 3 is the same as comparing 25 & 9)
+        distanceSq(a, b) = (a.x - b.x)^2 + (a.y - b.y)^2

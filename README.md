@@ -52,6 +52,42 @@ The algorithm works by connecting edges along the outermost points in a counter-
 <br> This is done by:
 1. Choosing a pivot point (the lowest y-coordinate point).
 
-2. Sorting all other points by the polar angle they make with this pivot.
+2. Sorting all other points by the angle they make with this pivot.
 
 3. Scanning through the sorted points and using the cross product to decide whether to “keep” or “discard” each point based on the turn direction.
+
+                    public static List<Point> grahamScan(List<Point> P) {
+        int n = P.size();
+        if (n < 3) return P;
+
+        //p0 is the lowest y coordinate. if theres a tie, the left most point is p0.
+        Point p0 = Collections.min(P);
+
+        //sort by angle relative to p0 (pos,neg,zero)
+        P.sort((a, b) -> {
+            double angle = crossProduct(p0, a, b);
+            if (angle == 0)  // means points are collinear so we must sort by distance
+                return Double.compare(distanceSq(p0, a), distanceSq(p0, b));
+            return -Double.compare(angle, 0); 
+        });
+
+        //we push points onto the stack and pop when we make a right turn. left turns are kept as part of the hull
+        Stack<Point> S = new Stack<>();
+        S.push(P.get(0));
+        S.push(P.get(1));
+        S.push(P.get(2));
+
+        for (int i = 3; i < n; i++) {
+            while (S.size() >= 2) {
+                Point top = S.pop();
+                Point next = S.peek();
+                if (crossProduct(next, top, P.get(i)) > 0) { // > 0 means left turn
+                    S.push(top);
+                    break;
+                }
+            }
+            S.push(P.get(i));
+        }
+
+        return new ArrayList<>(S);
+    }

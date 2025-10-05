@@ -92,7 +92,7 @@ The algorithm works by connecting edges along the outermost points in a counter-
                 return new ArrayList<>(S);
             }
 
-   <br>
+
    # Scheme Implementation of Graham Scan Convex Hull Algorithm
    In Scheme, the convex hull algorithm, such as Graham’s scan, would be written using pure functions and immutable data, unlike Java’s mutable objects and explicit loops. Points could be represented as pairs (x . y) instead of class instances, and iteration would be replaced by recursion. A function like 
    (cross a b c) would compute the cross product directly, returning a numeric value without side effects. The lowest point p0 would be found with a higher-order function. Sorting by angle would use a comparator function passed to (sort ...) like Java’s P.sort(...), but it produces a new list rather than modifying       the old one. The hull construction phase would recursively “push” and “pop” points by returning new lists, not altering a stack in place. Compared to Java, Scheme’s implementation feels more mathematical: you describe transformations of lists   rather than issuing step-by-step commands.

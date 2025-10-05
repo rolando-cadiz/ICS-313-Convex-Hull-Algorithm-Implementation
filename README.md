@@ -17,7 +17,7 @@ The algorithm works by:
 ## CrossProduct(Point a, Point b, Point c)
 Determines the orientation (left, right, or collinear) of three points:<br>
 
-  crossProduct(a, b, c) = (b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x)
+    crossProduct(a, b, c) = (b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x)
   
 - greater than 0 -> left turn
 - less than 0 -> right turn

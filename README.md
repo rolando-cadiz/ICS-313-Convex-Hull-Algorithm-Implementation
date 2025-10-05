@@ -56,7 +56,7 @@ The algorithm works by connecting edges along the outermost points in a counter-
 
 3. Scanning through the sorted points and using the cross product to decide whether to “keep” or “discard” each point based on the turn direction.
 
-                    public static List<Point> grahamScan(List<Point> P) {
+   public static List<Point> grahamScan(List<Point> P) {
         int n = P.size();
         if (n < 3) return P;
 

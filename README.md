@@ -43,6 +43,15 @@ Determines the orientation (left, right, or collinear) of three points:<br>
 - equal to 0 -> collinear
 
 ## distanceSq(Point a, Point b)
-In the case of collinear points, we choose the shortest distance from p0 to the collinear points. We forgo finding the square root of the distances because we don't explicitly care about the exact distance, just the relative distance (i.e, comparing 5 & 3 is the same as comparing 25 & 9).
+In the case of collinear points, we choose the shortest distance from p0 to the collinear points. We forgo finding the square root of the distances to save computational power and because we don't explicitly care about the exact distance, just the relative distance (i.e, comparing 5 & 3 is the same as comparing 25 & 9).
 
         distanceSq(a, b) = (a.x - b.x)^2 + (a.y - b.y)^2
+
+## grahamScan(List<Point> P)
+The algorithm works by connecting edges along the outermost points in a counter-clockwise fashion, ensuring all points are within the boundary of the connecting edges.
+<br> This is done by:
+1. Choosing a pivot point (the lowest y-coordinate point).
+
+2. Sorting all other points by the polar angle they make with this pivot.
+
+3. Scanning through the sorted points and using the cross product to decide whether to “keep” or “discard” each point based on the turn direction.

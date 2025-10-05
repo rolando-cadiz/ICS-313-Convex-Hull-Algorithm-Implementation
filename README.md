@@ -7,7 +7,7 @@ The algorithm works by:
 - Selecting the point with the lowest y-coordinate (and leftmost if tied) as the starting point p0.
 - Sorting all other points based on the polar angle they make with p0.
 - Iteratively constructing the convex hull using a stack, adding points that make a left turn, and removing points that make a right turn.
-This implementation demonstrates:
+<br>This implementation demonstrates:
 - Custom point comparison using Comparable.
 - Sorting points by orientation via cross product.
 - Handling collinear points with a distance-based tiebreaker.

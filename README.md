@@ -16,6 +16,6 @@ The algorithm works by:
 # Function Methods
 ## CrossProduct(Point a, Point b, Point c)
 Determines the orientation (left, right, or collinear) of three points:<br>
-- > 0 -> left turn
+-  > 0 -> left turn
 - < 0 -> right turn
 - = 0 -> collinear

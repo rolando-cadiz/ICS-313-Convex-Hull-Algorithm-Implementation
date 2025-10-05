@@ -12,3 +12,10 @@ The algorithm works by:
 - Sorting points by orientation via cross product.
 - Handling collinear points with a distance-based tiebreaker.
 - Constructing the hull in O(n log n) time.
+
+# Function Methods
+## CrossProduct(Point a, Point b, Point c)
+Determines the orientation (left, right, or collinear) of three points:<br>
+- > 0 -> left turn
+- < 0 -> right turn
+- = 0 -> collinear

@@ -100,17 +100,17 @@ In Scheme, the convex hull algorithm, such as Graham’s scan, would be written 
 Coding this algorithm in a functional language (like Scheme) is conceptually easy and intuitive since we are simply writing out mathematical relationships and transformations. This is useful for keeping the code clear and comprehensive. Since the data sets are immutable, there's less of a chance of side-effect type of bugs. The drawback, I think, would be the recursive nature of this paradigm; performance may take a hit, especially if we are looking to find the convex hull of a massive set of points.
 
                 (define (graham-scan points)
-  (let* ((p0 (apply min points
-                    (lambda (p1 p2)
-                      (if (= (y p1) (y p2))
-                          (< (x p1) (x p2))
-                          (< (y p1) (y p2))))))
-         (sorted (sort points
-                       (lambda (a b)
-                         (let ((angle (cross p0 a b)))
-                           (if (= angle 0)
-                               (< (x a) (x b))
-                               (> angle 0)))))))
+                  (let* ((p0 (apply min points
+                            (lambda (p1 p2)
+                              (if (= (y p1) (y p2))
+                                  (< (x p1) (x p2))
+                                  (< (y p1) (y p2))))))
+                         (sorted (sort points
+                               (lambda (a b)
+                                 (let ((angle (cross p0 a b)))
+                                   (if (= angle 0)
+                                       (< (x a) (x b))
+                                       (> angle 0)))))))
 
   # Prolog
 In Prolog, the convex hull algorithm is expressed through predicates, logical statements that define relationships between points instead of procedural instructions. Each predicate (i.e point(x,y), cross(a,b,c,value), or left_turn(a,b,c)) declares facts or rules that the compiler can use to set up new creations. The graham_scan predicate, for example, describes the relationship between the set of points and the resulting hull list, relying on other predicates to check sorting order, angles/orientation, etc. Instead of loops or conditionals, Prolog’s compiler uses backtracking and unification to explore all combinations that satisfy those predicates. In Java, the control flow is explicitly programmed using mutable stacks and conditionals, but in Prolog, control comes from the logical predicate definitions. While Java executes instructions step by step, Prolog chooses which configuration of points fulfills the definition of a convex hull.<br>

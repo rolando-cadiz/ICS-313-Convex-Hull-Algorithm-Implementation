@@ -117,6 +117,14 @@ In Prolog, the convex hull algorithm is expressed through predicates, logical st
 
 Logic languages are better suited for pathfinding problems or problems with constraints (i.e you define the relationships of parameters and their required I/O with predicates). The declarative nature of Prolog may help when writing out your predicates/functions/whatever you would like to call them (you can tell I don't know much about Prolog). You can keep the code clean as well, just like functional languages. As a downside, logical languages don't inherently know all the answers to a defined relationship and what values predicates are should return, therefore it will perform a sort of "brute-force" search where it picks and returns values based on the defined predicates. Obviously, this can really bog down performance when dealing with large data sets.
 
+                % Base case: hull is built
+                build_hull([], Acc, Acc).
+                build_hull([P|Rest], [Top,Next|Stack], Hull) :-
+                    cross(Next, Top, P, C), C =< 0, !,
+                    build_hull([P|Rest], [Next|Stack], Hull).
+                build_hull([P|Rest], Stack, Hull) :-
+                    build_hull(Rest, [P|Stack], Hull).
+
                 graham_scan(Points, Hull) :-
-    predsort(compare_angle, Points, Sorted),
-    build_hull(Sorted, [], Hull).
+                    predsort(compare_angle, Points, Sorted),
+                    build_hull(Sorted, [], Hull).
